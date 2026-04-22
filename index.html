@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Athletes Revolution Fitness Center | Kammanahalli, Bengaluru</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#050507;
+  --dark:#0a0a10;
+  --card:#0f0f18;
+  --blue:#1a6cff;
+  --blue2:#0044cc;
+  --cyan:#00d4ff;
+  --lime:#b8ff00;
+  --white:#f0f0f8;
+  --gray:#6b6b80;
+  --border:rgba(255,255,255,0.06);
+  --glass:rgba(26,108,255,0.06);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+::selection{background:var(--blue);color:white;}
+
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+#cur{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s;}
+#cur-r{position:fixed;width:32px;height:32px;border:1.5px solid rgba(0,212,255,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;}
+.ld-logo{font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);}
+.ld-logo span{color:var(--cyan);}
+.ld-sub{font-family:'Rajdhani',sans-serif;font-size:0.85rem;letter-spacing:0.5em;color:var(--gray);text-transform:uppercase;}
+.ld-bar{width:200px;height:2px;background:rgba(255,255,255,0.07);margin-top:10px;border-radius:2px;}
+.ld-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));animation:ldFill 2s ease forwards;border-radius:2px;}
+@keyframes ldFill{to{width:100%;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  padding:16px 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,5,7,0.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:0.1em;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--cyan);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.9rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(240,240,248,0.5);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-btn{
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;
+  background:var(--blue);color:white;padding:10px 22px;text-decoration:none;border-radius:2px;
+  transition:background .2s,transform .2s;cursor:none;
+}
+.nav-btn:hover{background:var(--cyan);color:var(--bg);transform:translateY(-1px);}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;}
+
+.hero-bg-img{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1600&q=80') center/cover no-repeat;
+  filter:brightness(0.25) saturate(0.8);
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(135deg,rgba(5,5,7,0.95) 40%,rgba(26,108,255,0.08) 100%),
+    linear-gradient(to top,rgba(5,5,7,1) 0%,transparent 60%);
+}
+/* Grid lines */
+.hero-grid{
+  position:absolute;inset:0;z-index:1;
+  background-image:linear-gradient(rgba(26,108,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,108,255,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+/* Blue glow orb */
+.hero-orb{
+  position:absolute;right:15%;top:30%;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,108,255,0.2) 0%,transparent 70%);
+  z-index:1;filter:blur(60px);
+}
+
+.hero-content{position:relative;z-index:3;padding:0 5vw;max-width:700px;padding-top:80px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(26,108,255,0.15);border:1px solid rgba(26,108,255,0.3);
+  padding:6px 16px;border-radius:2px;margin-bottom:2rem;
+  font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);
+  animation:fadeUp .6s ease both;
+}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 1.5s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+
+.hero-title{
+  font-family:'Oswald',sans-serif;font-size:clamp(3.5rem,9vw,9.5rem);
+  font-weight:700;line-height:0.88;letter-spacing:0.01em;text-transform:uppercase;
+  animation:fadeUp .6s .1s ease both;
+}
+.hero-title .t1{color:var(--white);display:block;}
+.hero-title .t2{color:transparent;-webkit-text-stroke:2px var(--cyan);display:block;}
+.hero-title .t3{
+  display:block;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.hero-sub{
+  margin-top:1.8rem;
+  font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:500;letter-spacing:0.05em;
+  color:rgba(240,240,248,0.55);max-width:480px;line-height:1.6;
+  animation:fadeUp .6s .2s ease both;
+}
+
+.hero-stats{
+  display:flex;gap:2.5rem;margin-top:2.5rem;
+  animation:fadeUp .6s .3s ease both;
+}
+.hstat{border-left:2px solid var(--blue);padding-left:1rem;}
+.hstat-num{font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--cyan);line-height:1;}
+.hstat-label{font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:2px;}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:2.5rem;animation:fadeUp .6s .4s ease both;}
+.btn-primary{
+  background:var(--blue);color:white;padding:15px 36px;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;cursor:none;border-radius:2px;
+  box-shadow:0 0 30px rgba(26,108,255,0.3);transition:all .2s;
+}
+.btn-primary:hover{background:var(--cyan);color:var(--bg);box-shadow:0 0 40px rgba(0,212,255,0.4);transform:translateY(-2px);}
+.btn-outline{
+  border:1.5px solid rgba(240,240,248,0.2);color:var(--white);padding:15px 36px;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;cursor:none;border-radius:2px;transition:all .2s;
+}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* REVEAL */
+.reveal,.reveal-left,.reveal-right{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left{transform:translateX(-30px);}
+.reveal-right{transform:translateX(30px);}
+.reveal.visible,.reveal-left.visible,.reveal-right.visible{opacity:1;transform:none;}
+
+/* SECTIONS */
+section{padding:clamp(5rem,10vw,9rem) 5vw;}
+
+.section-eyebrow{
+  font-family:'Rajdhani',sans-serif;font-size:0.8rem;font-weight:700;
+  letter-spacing:0.4em;text-transform:uppercase;color:var(--cyan);
+  display:flex;align-items:center;gap:10px;margin-bottom:1rem;
+}
+.section-eyebrow::before{content:'';width:24px;height:1.5px;background:var(--cyan);}
+.section-title{
+  font-family:'Oswald',sans-serif;font-size:clamp(2.2rem,5vw,4.5rem);
+  font-weight:700;text-transform:uppercase;line-height:0.95;letter-spacing:0.02em;
+}
+.section-title span{color:var(--cyan);}
+
+/* PROGRAMS */
+#programs{background:var(--dark);}
+.programs-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5px;margin-top:4rem;border:1.5px solid var(--border);
+}
+.pg{
+  background:var(--card);padding:2.5rem;
+  border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;transition:background .3s;cursor:none;
+}
+.pg::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:0;
+  background:var(--cyan);transition:height .4s ease;
+}
+.pg:hover::before{height:100%;}
+.pg:hover{background:rgba(26,108,255,0.06);}
+.pg-icon{font-size:2rem;margin-bottom:1.2rem;display:block;}
+.pg-title{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:.7rem;}
+.pg-desc{font-size:0.9rem;color:var(--gray);line-height:1.65;}
+
+/* GALLERY */
+#gallery{}
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4rem;
+}
+.gg{position:relative;overflow:hidden;aspect-ratio:3/4;cursor:none;}
+.gg img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .4s;}
+.gg:hover img{transform:scale(1.06);filter:brightness(0.6);}
+.gg-overlay{
+  position:absolute;inset:0;display:flex;align-items:flex-end;padding:1.5rem;
+  background:linear-gradient(to top,rgba(5,5,7,0.9) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.gg:hover .gg-overlay{opacity:1;}
+.gg-label{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;}
+.gg-label span{color:var(--cyan);}
+
+/* ACHIEVEMENT STRIP */
+.achieve-strip{
+  background:var(--blue);padding:3rem 5vw;
+  display:flex;align-items:center;justify-content:space-evenly;flex-wrap:wrap;gap:2rem;
+  position:relative;overflow:hidden;
+}
+.achieve-strip::before{
+  content:'REVOLUTION';position:absolute;font-family:'Oswald',sans-serif;font-size:12rem;font-weight:700;
+  color:rgba(255,255,255,0.05);letter-spacing:0.1em;white-space:nowrap;top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.as-item{text-align:center;}
+.as-num{font-family:'Oswald',sans-serif;font-size:3.5rem;font-weight:700;line-height:1;color:white;}
+.as-label{font-family:'Rajdhani',sans-serif;font-size:0.85rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:4px;}
+
+/* ABOUT */
+#about{background:var(--dark);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-top:4rem;}
+.about-img-wrap{position:relative;}
+.about-img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;
+  filter:contrast(1.05);
+}
+.about-tag{
+  position:absolute;bottom:-1.5rem;right:-1.5rem;
+  background:var(--blue);padding:1.5rem 2rem;border-radius:2px;
+  font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;
+  box-shadow:0 20px 60px rgba(26,108,255,0.4);
+}
+.about-tag span{display:block;font-size:2.5rem;font-weight:700;color:var(--cyan);line-height:1;}
+.about-text{font-size:1.05rem;color:rgba(240,240,248,0.65);line-height:1.8;margin-top:1.5rem;}
+.about-features{margin-top:2.5rem;display:flex;flex-direction:column;gap:.8rem;}
+.af{display:flex;align-items:center;gap:12px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.05em;}
+.af::before{content:'✓';background:var(--blue);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;font-family:'Inter',sans-serif;}
+
+/* REVIEWS */
+#reviews{}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5px;margin-top:4rem;border:1.5px solid var(--border);}
+.rv{background:var(--card);padding:2.5rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.rv-stars{font-size:1rem;letter-spacing:2px;margin-bottom:1rem;color:var(--cyan);}
+.rv-text{font-size:0.95rem;color:rgba(240,240,248,0.65);line-height:1.7;font-style:italic;}
+.rv-author{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:1.5rem;color:var(--white);}
+.rv-platform{font-size:0.75rem;color:var(--gray);letter-spacing:0.1em;margin-top:4px;}
+.reviews-summary{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:1.5px;
+  border:1.5px solid var(--border);border-top:none;
+}
+.rs{background:var(--card);padding:2rem;text-align:center;border-right:1px solid var(--border);}
+.rs-num{font-family:'Oswald',sans-serif;font-size:2.8rem;font-weight:700;color:var(--cyan);}
+.rs-label{font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:4px;}
+
+/* CONTACT */
+#contact{background:var(--dark);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.big-cta{font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:700;text-transform:uppercase;line-height:0.9;margin-top:1rem;}
+.big-cta span{color:var(--cyan);}
+.contact-desc{font-size:1rem;color:var(--gray);line-height:1.7;margin-top:1.5rem;max-width:400px;}
+.contact-items{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.5rem;}
+.ci{display:flex;gap:1rem;align-items:flex-start;}
+.ci-icon{width:40px;height:40px;background:rgba(26,108,255,0.15);border:1px solid rgba(26,108,255,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+.ci-label{font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:3px;}
+.ci-val{font-size:0.95rem;color:var(--white);}
+.ci-val a{color:var(--cyan);text-decoration:none;}
+.ci-val a:hover{text-decoration:underline;}
+
+/* MAP */
+.map-wrap{border-radius:2px;overflow:hidden;border:1px solid var(--border);}
+.map-wrap iframe{display:block;width:100%;height:320px;filter:grayscale(0.8) contrast(1.1) invert(0.9);}
+
+/* JOIN FORM */
+.join-form{margin-top:2rem;background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:2px;}
+.jf-title{font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1.5rem;}
+.jf-title span{color:var(--cyan);}
+.jf-group{margin-bottom:1rem;}
+.jf-group input,.jf-group select{
+  width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  color:var(--white);padding:12px 16px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:500;
+  outline:none;transition:border-color .2s;border-radius:2px;
+}
+.jf-group input:focus,.jf-group select:focus{border-color:var(--cyan);}
+.jf-group select option{background:var(--dark);}
+.jf-submit{
+  width:100%;background:var(--blue);color:white;border:none;
+  padding:14px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:none;transition:background .2s,transform .2s;border-radius:2px;
+}
+.jf-submit:hover{background:var(--cyan);color:var(--bg);transform:translateY(-1px);}
+
+/* FOOTER */
+footer{
+  background:var(--dark);border-top:1px solid var(--border);
+  padding:3rem 5vw;text-align:center;
+}
+.footer-logo{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.footer-logo span{color:var(--cyan);}
+.footer-tagline{font-family:'Rajdhani',sans-serif;font-size:0.85rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gray);margin-top:.5rem;}
+.footer-copy{font-size:0.8rem;color:var(--gray);margin-top:1.5rem;}
+
+/* WA FLOAT */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:700;
+  background:#25d366;color:white;width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  transition:transform .2s,box-shadow .2s;cursor:none;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,0.6);}
+
+/* ── TRAINER SECTION ── */
+#trainer{background:var(--bg);position:relative;overflow:hidden;}
+#trainer::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,108,255,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.trainer-grid{display:grid;grid-template-columns:420px 1fr;gap:5rem;align-items:start;margin-top:4rem;}
+.trainer-photo-wrap{position:relative;}
+.trainer-photo-frame{
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+}
+.trainer-photo-frame::before{
+  content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(to bottom,transparent 60%,rgba(5,5,7,0.95) 100%);
+}
+.trainer-photo{
+  width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;
+  display:block;filter:contrast(1.05) saturate(0.9);
+  transition:transform .6s ease;
+}
+.trainer-photo-wrap:hover .trainer-photo{transform:scale(1.03);}
+.trainer-photo-badge{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  padding:2rem;
+  background:linear-gradient(to top,rgba(5,5,7,1) 0%,transparent 100%);
+}
+.trainer-photo-name{
+  font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.05em;line-height:1.1;
+}
+.trainer-photo-title{
+  font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:600;
+  letter-spacing:0.25em;text-transform:uppercase;color:var(--cyan);margin-top:4px;
+}
+/* Accent corner lines */
+.trainer-photo-frame::after{
+  content:'';position:absolute;top:16px;left:16px;z-index:3;
+  width:40px;height:40px;
+  border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);
+}
+.trainer-corner-br{
+  position:absolute;bottom:16px;right:16px;z-index:3;
+  width:40px;height:40px;
+  border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan);
+  pointer-events:none;
+}
+
+.trainer-info{}
+.trainer-meta-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  border:1px solid var(--border);margin-bottom:2.5rem;border-radius:2px;overflow:hidden;
+}
+.tm{
+  background:var(--card);padding:1.2rem 1.5rem;
+  border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.tm-label{font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gray);}
+.tm-val{font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:600;color:var(--white);margin-top:3px;}
+.tm-val span{color:var(--cyan);}
+
+.trainer-block{margin-bottom:2rem;}
+.trainer-block-title{
+  font-family:'Rajdhani',sans-serif;font-size:0.8rem;font-weight:700;
+  letter-spacing:0.35em;text-transform:uppercase;color:var(--cyan);
+  display:flex;align-items:center;gap:10px;margin-bottom:1rem;
+}
+.trainer-block-title::before{content:'';width:24px;height:1.5px;background:var(--cyan);}
+
+.skills-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-tag{
+  font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;
+  background:rgba(26,108,255,0.12);border:1px solid rgba(26,108,255,0.3);
+  color:var(--cyan);padding:6px 14px;border-radius:2px;
+  transition:background .2s,border-color .2s;
+}
+.skill-tag:hover{background:rgba(26,108,255,0.25);border-color:var(--cyan);}
+
+.achievement-list{display:flex;flex-direction:column;gap:.9rem;}
+.ach-item{
+  display:flex;gap:12px;align-items:flex-start;
+  font-size:0.95rem;color:rgba(240,240,248,0.7);line-height:1.5;
+}
+.ach-icon{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;flex-shrink:0;margin-top:1px;
+}
+
+/* ── MEDIA SECTION ── */
+#media{background:var(--dark);}
+.media-tabs{
+  display:flex;gap:0;margin-top:3rem;
+  border:1px solid var(--border);border-radius:2px;overflow:hidden;width:fit-content;
+}
+.media-tab{
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  padding:12px 32px;color:rgba(240,240,248,0.45);
+  background:transparent;border:none;cursor:none;
+  transition:all .25s;position:relative;
+}
+.media-tab.active{background:var(--blue);color:white;}
+.media-tab:not(.active):hover{color:var(--cyan);background:rgba(26,108,255,0.08);}
+.media-tab-divider{width:1px;background:var(--border);flex-shrink:0;}
+
+.media-panel{display:none;margin-top:3rem;}
+.media-panel.active{display:block;}
+
+/* Images grid */
+.media-images-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+}
+
+.mi{
+  position:relative;
+  overflow:hidden;
+  height:340px;
+  cursor:none;
+  border-radius:4px;
+  background:#0a0a10;
+}
+
+.mi img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#0a0a10;
+  transition:transform .5s ease,filter .4s;
+}
+
+.mi:hover img{
+  transform:scale(1.06);
+  filter:brightness(0.6);
+}
+
+.mi-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity .3s;
+  background:rgba(26,108,255,0.3);
+}
+
+.mi:hover .mi-overlay{
+  opacity:1;
+}
+
+.mi-overlay-icon{
+  font-size:2rem;
+  color:white;
+}
+
+.mi-upload-label{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.75rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.6);
+  margin-top:6px;
+  position:absolute;
+  bottom:10px;
+  left:0;
+  right:0;
+  text-align:center;
+}
+
+/* Video grid — YouTube Shorts (portrait) */
+.media-videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.mv{
+  position:relative;overflow:hidden;aspect-ratio:9/16;
+  background:var(--card);border:1px solid var(--border);border-radius:4px;
+  cursor:pointer;
+}
+.mv-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease,filter .3s;}
+.mv:hover .mv-thumb{transform:scale(1.05);filter:brightness(0.6);}
+.mv-play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(255,0,0,0.85);display:flex;align-items:center;justify-content:center;
+  transition:transform .25s,background .25s;pointer-events:none;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
+}
+.mv:hover .mv-play-btn{transform:translate(-50%,-50%) scale(1.12);background:rgba(255,0,0,1);}
+.mv-play-btn svg{width:24px;height:24px;fill:white;margin-left:4px;}
+.mv-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:.7rem 1rem;
+  background:linear-gradient(to top,rgba(5,5,7,0.9) 0%,transparent 100%);
+  font-family:'Rajdhani',sans-serif;font-size:0.75rem;letter-spacing:0.15em;
+  text-transform:uppercase;color:rgba(255,255,255,0.7);
+  pointer-events:none;
+}
+
+/* Lightbox */
+#yt-lightbox{
+  display:none;position:fixed;inset:0;z-index:9500;
+  background:rgba(0,0,0,0.92);align-items:center;justify-content:center;
+}
+#yt-lightbox.open{display:flex;}
+#yt-lightbox-inner{
+  position:relative;width:min(400px,90vw);aspect-ratio:9/16;
+  border-radius:8px;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,0.8);
+}
+#yt-lightbox-inner iframe{width:100%;height:100%;border:none;}
+#yt-close{
+  position:absolute;top:-44px;right:0;
+  background:none;border:none;color:white;font-size:2rem;cursor:pointer;
+  line-height:1;opacity:.8;transition:opacity .2s;
+}
+#yt-close:hover{opacity:1;}
+
+.mv-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;
+  background:var(--card);border:1.5px dashed rgba(26,108,255,0.3);
+  cursor:none;
+}
+.mv-placeholder-icon{font-size:2.5rem;opacity:0.4;}
+.mv-placeholder-text{font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);}
+
+/* Certificates grid */
+.media-certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.mc{
+  background:var(--card);border:1px solid var(--border);border-radius:2px;
+  overflow:hidden;position:relative;
+  transition:border-color .3s,background .3s;cursor:none;
+}
+.mc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+  transform:scaleX(0);transition:transform .4s ease;transform-origin:left;z-index:2;
+}
+.mc:hover::before{transform:scaleX(1);}
+.mc:hover{border-color:rgba(26,108,255,0.4);}
+.mc-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .4s ease;}
+.mc:hover .mc-img{transform:scale(1.04);}
+.mc-caption{
+  padding:1rem 1.2rem;
+  font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gray);
+}
+.mc-icon{font-size:3rem;display:block;margin-bottom:1.2rem;}
+.mc-title{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:.5rem;padding:0 2rem;}
+.mc-body{font-size:0.85rem;color:var(--gray);line-height:1.6;padding:0 2rem 1.5rem;}
+.mc-year{
+  display:inline-block;margin:0 2rem 1.5rem;
+  font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);
+  background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);
+  padding:3px 10px;border-radius:2px;
+}
+
+/* ══════════════════════════════════════════ TEAM SECTION ══════ */
+#team{background:var(--dark);position:relative;overflow:hidden;}
+#team::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(26,108,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(26,108,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.team-intro{text-align:center;position:relative;z-index:2;}
+.team-cards{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:3rem;margin-top:4rem;position:relative;z-index:2;
+}
+.tc{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--border);
+  overflow:hidden;
+  transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.tc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),transparent);
+  opacity:0;transition:opacity .35s;
+}
+.tc:hover{transform:translateY(-8px);border-color:rgba(0,212,255,0.25);box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 40px rgba(26,108,255,0.1);}
+.tc:hover::before{opacity:1;}
+
+/* Photo area */
+.tc-photo-area{
+  position:relative;
+  height:480px;
+  overflow:hidden;
+  background:#0a0a10;
+}.tc-photo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+  transition:transform .5s ease,filter .5s ease;
+  filter:brightness(0.85) saturate(0.9);
+  background:#0a0a10;
+}.tc:hover .tc-photo{transform:scale(1.05);filter:brightness(0.95) saturate(1.1);}
+.tc-photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(10,10,16,1) 0%, rgba(10,10,16,0.6) 40%, transparent 70%);
+}
+.tc-discipline-badge{
+  position:absolute;top:1.2rem;right:1.2rem;
+  background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.35);
+  padding:6px 14px;
+  font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:0.25em;text-transform:uppercase;color:var(--cyan);
+}
+.tc-number{
+  position:absolute;top:1rem;left:1.2rem;
+  font-family:'Oswald',sans-serif;font-size:5rem;font-weight:700;
+  color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;
+  letter-spacing:-0.02em;
+}
+
+/* Name block inside photo */
+.tc-name-block{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;}
+.tc-name{
+  font-family:'Oswald',sans-serif;font-size:clamp(1.6rem,2.5vw,2rem);
+  font-weight:700;text-transform:uppercase;letter-spacing:0.04em;
+  color:var(--white);line-height:1.1;
+}
+.tc-role{
+  font-family:'Rajdhani',sans-serif;font-size:0.8rem;font-weight:600;
+  letter-spacing:0.25em;text-transform:uppercase;color:var(--cyan);
+  margin-top:6px;display:flex;align-items:center;gap:8px;
+}
+.tc-role::before{content:'';width:20px;height:1.5px;background:var(--cyan);}
+
+/* Body */
+.tc-body{padding:2rem;}
+.tc-stat-row{
+  display:flex;gap:0;margin-bottom:1.8rem;
+  border:1px solid var(--border);overflow:hidden;
+}
+.tc-stat{
+  flex:1;padding:.85rem .5rem;text-align:center;
+  border-right:1px solid var(--border);
+}
+.tc-stat:last-child{border-right:none;}
+.tc-stat-val{
+  font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;
+  color:var(--cyan);line-height:1;
+}
+.tc-stat-lbl{
+  font-family:'Rajdhani',sans-serif;font-size:0.65rem;font-weight:600;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);
+  margin-top:4px;
+}
+.tc-quote{
+  font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:600;
+  color:var(--white);line-height:1.5;margin-bottom:1.4rem;
+  border-left:2px solid var(--cyan);padding-left:1rem;
+  font-style:italic;opacity:0.92;
+}
+.tc-bio{
+  font-size:0.88rem;color:var(--gray);line-height:1.8;margin-bottom:1.8rem;
+}
+.tc-bio strong{color:var(--white);}
+.tc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.8rem;}
+.tc-tag{
+  font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  background:rgba(26,108,255,0.08);border:1px solid rgba(26,108,255,0.2);
+  color:rgba(240,240,248,0.7);padding:5px 12px;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.tc:hover .tc-tag{background:rgba(0,212,255,0.06);border-color:rgba(0,212,255,0.2);color:var(--white);}
+.tc-achs{display:flex;flex-direction:column;gap:10px;}
+.tc-ach{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:0.83rem;color:var(--gray);line-height:1.5;
+}
+.tc-ach-icon{
+  width:28px;height:28px;min-width:28px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);
+  font-size:0.85rem;flex-shrink:0;margin-top:1px;
+}
+.tc-ach strong{color:var(--white);}
+
+/* Glow orbs behind cards */
+.team-orb1{position:absolute;left:-200px;top:20%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,108,255,0.07) 0%,transparent 70%);filter:blur(80px);pointer-events:none;}
+.team-orb2{position:absolute;right:-200px;bottom:10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,0.05) 0%,transparent 70%);filter:blur(80px);pointer-events:none;}
+
+/* ── RESPONSIVE ── */
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:1.5rem;}
+  .reviews-summary{grid-template-columns:repeat(2,1fr);}
+  .about-tag{right:0;bottom:-1rem;}
+  .team-cards{grid-template-columns:1fr;}
+  .tc-photo-area{height:400px;}
+  .trainer-photo-wrap{max-width:380px;}
+  .media-images-grid,.media-videos-grid,.media-certs-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .achieve-strip{justify-content:center;}
+  .trainer-meta-grid{grid-template-columns:1fr;}
+  .media-images-grid,.media-videos-grid{grid-template-columns:1fr 1fr;}
+  .media-certs-grid{grid-template-columns:1fr;}
+  .media-tab{padding:10px 18px;font-size:0.8rem;letter-spacing:0.1em;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-logo">ATHLETES <span>REVOLUTION</span></div>
+  <div class="ld-sub">Kammanahalli · Bengaluru</div>
+  <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">AR <span>FITNESS</span></a>
+  <ul class="nav-links">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#trainer">Trainer</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/918401150426?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20Fitness%20Center." target="_blank" class="nav-btn">Join Now</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ 5.0 Stars · 207 Google Reviews</div>
+    <h1 class="hero-title">
+      <span class="t1">ATHLETES</span>
+      <span class="t2">REVOLUTION</span>
+      <span class="t3">FITNESS</span>
+    </h1>
+    <p class="hero-sub">Elite training. Transformative results. A community built on discipline and ambition — Kammanahalli's highest-rated fitness center.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">5.0</div><div class="hstat-label">Google Rating</div></div>
+      <div class="hstat"><div class="hstat-num">207+</div><div class="hstat-label">Reviews</div></div>
+      <div class="hstat"><div class="hstat-num">8+</div><div class="hstat-label">Programs</div></div>
+      <div class="hstat"><div class="hstat-num">2016</div><div class="hstat-label">Est.</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="https://wa.me/918401150426?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20and%20know%20more%20about%20membership." target="_blank" class="btn-primary">💪 Start Free Trial</a>
+      <a href="https://maps.google.com/?q=Athletes+Revolution+Fitness+Center+45+Oil+Mill+Road+Kammanahalli+Bengaluru" target="_blank" class="btn-outline">📍 Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-eyebrow" style="justify-content:center;">What We Offer</div>
+    <h2 class="section-title">TRAIN FOR <span>EVERY</span><br>GOAL.</h2>
+  </div>
+  <div class="programs-grid reveal" style="margin-top:4rem;">
+    <div class="pg">
+      <span class="pg-icon">🥊</span>
+      <div class="pg-title">Boxing & Kickboxing</div>
+      <div class="pg-desc">Professional boxing and kickboxing coaching — from fundamentals to competition level. Build explosive power, coordination, and mental toughness.</div>
+    </div>
+    <div class="pg">
+      <span class="pg-icon">🏋️</span>
+      <div class="pg-title">Strength Training</div>
+      <div class="pg-desc">Progressive overload programs designed for muscle building, powerlifting, and functional strength. Expert coaches on the floor at all times.</div>
+    </div>
+    <div class="pg">
+      <span class="pg-icon">🔥</span>
+      <div class="pg-title">Body Shaping</div>
+      <div class="pg-desc">Structured fat loss and body composition programs — combining resistance training, cardio protocols, and nutrition guidance.</div>
+    </div>
+    <div class="pg">
+      <span class="pg-icon">🧘</span>
+      <div class="pg-title">Yoga & Flexibility</div>
+      <div class="pg-desc">Mobility-focused yoga sessions to complement your training, reduce injury risk, and accelerate recovery.</div>
+    </div>
+    <div class="pg">
+      <span class="pg-icon">🏃</span>
+      <div class="pg-title">Sports Conditioning</div>
+      <div class="pg-desc">Functional athletic conditioning for sport-specific performance. Agility, speed, stamina — built systematically.</div>
+    </div>
+    <div class="pg">
+      <span class="pg-icon">👤</span>
+      <div class="pg-title">Personal Training</div>
+      <div class="pg-desc">One-on-one sessions with certified trainers who track every rep, every set, and every milestone. Maximum accountability.</div>
+    </div>
+    <div class="pg">
+      <span class="pg-icon">👦</span>
+      <div class="pg-title">Kids Athletic Program</div>
+      <div class="pg-desc">Specially designed programs for young athletes — building discipline, coordination, and confidence through structured sports training.</div>
+    </div>
+    <div class="pg">
+      <span class="pg-icon">🏆</span>
+      <div class="pg-title">Competition Prep</div>
+      <div class="pg-desc">Proven track record of preparing members for competitions — from local events to state-level championships.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="padding-bottom:0;">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-eyebrow" style="justify-content:center;">Inside The Revolution</div>
+    <h2 class="section-title">OUR <span>GYM.</span><br>OUR PEOPLE.</h2>
+  </div>
+  <div class="gallery-grid reveal" style="margin-top:4rem;">
+    <div class="gg">
+      <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=600&q=80" alt="Training"/>
+      <div class="gg-overlay"><div class="gg-label">STRENGTH <span>TRAINING</span></div></div>
+    </div>
+    <div class="gg">
+      <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=600&q=80" alt="Boxing"/>
+      <div class="gg-overlay"><div class="gg-label">BOXING <span>PROGRAM</span></div></div>
+    </div>
+    <div class="gg">
+      <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=600&q=80" alt="Group Training"/>
+      <div class="gg-overlay"><div class="gg-label">GROUP <span>TRAINING</span></div></div>
+    </div>
+    <div class="gg">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80" alt="Functional Fitness"/>
+      <div class="gg-overlay"><div class="gg-label">FUNCTIONAL <span>FITNESS</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENT STRIP -->
+<div class="achieve-strip reveal">
+  <div class="as-item"><div class="as-num">207+</div><div class="as-label">Google Reviews</div></div>
+  <div class="as-item"><div class="as-num">5.0</div><div class="as-label">Perfect Rating</div></div>
+  <div class="as-item"><div class="as-num">4.9</div><div class="as-label">Justdial Rating</div></div>
+  <div class="as-item"><div class="as-num">1000+</div><div class="as-label">Members Trained</div></div>
+  <div class="as-item"><div class="as-num">8+</div><div class="as-label">Programs</div></div>
+</div>
+
+<!-- ══════════════════════════════════════════ TRAINER ══════ -->
+<section id="trainer">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-eyebrow" style="justify-content:center;">Meet The Coach</div>
+    <h2 class="section-title">THE <span>MIND</span><br>BEHIND THE REVOLUTION.</h2>
+  </div>
+
+  <div class="trainer-grid">
+
+    <!-- Photo -->
+    <div class="trainer-photo-wrap reveal-left">
+      <div class="trainer-photo-frame">
+        <!-- Replace src below with actual trainer photo -->
+        <img
+          class="trainer-photo"
+          src="images/hero.jpeg"
+          alt="Shantha Murthy S P – Head Coach, Athletes Revolution"
+        />
+        <div class="trainer-photo-badge">
+          <div class="trainer-photo-name">Shantha Murthy S P</div>
+          <div class="trainer-photo-title">Head Coach · Proprietor</div>
+        </div>
+      </div>
+      <div class="trainer-corner-br"></div>
+    </div>
+
+    <!-- Info -->
+    <div class="trainer-info reveal-right">
+
+      <!-- Quick Meta -->
+      <div class="trainer-meta-grid">
+        <div class="tm">
+          <div class="tm-label">Age</div>
+          <div class="tm-val"><span>34</span> Years</div>
+        </div>
+        <div class="tm">
+          <div class="tm-label">Height</div>
+          <div class="tm-val"><span>5.11</span> ft</div>
+        </div>
+        <div class="tm">
+          <div class="tm-label">Experience</div>
+          <div class="tm-val"><span>14</span> Years</div>
+        </div>
+        <div class="tm">
+          <div class="tm-label">Role</div>
+          <div class="tm-val" style="font-size:1rem;">Proprietor &<br>Head Coach</div>
+        </div>
+      </div>
+
+      <!-- Specializations -->
+      <div class="trainer-block">
+        <div class="trainer-block-title">Specialized Skills</div>
+        <div class="skills-tags">
+          <span class="skill-tag">⚡ Athletics</span>
+          <span class="skill-tag">🥊 Kick Boxing</span>
+          <span class="skill-tag">🔥 Crossfit</span>
+          <span class="skill-tag">💪 Calisthenics</span>
+          <span class="skill-tag">🧘 Yoga</span>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="trainer-block">
+        <div class="trainer-block-title">Achievements</div>
+        <div class="achievement-list">
+          <div class="ach-item">
+            <div class="ach-icon">🥇</div>
+            <div><strong style="color:var(--white);">Karnataka State Representative &amp; National Medalist</strong><br>200m, 400m &amp; 4×400m Relay — Track &amp; Field Athletics</div>
+          </div>
+          <div class="ach-item">
+            <div class="ach-icon">🏆</div>
+            <div><strong style="color:var(--white);">Maruti Suzuki Devil Circuit — Ranked 5th (2018–19)</strong><br>Asia's Toughest Obstacle Course Race</div>
+          </div>
+          <div class="ach-item">
+            <div class="ach-icon">🏅</div>
+            <div><strong style="color:var(--white);">14 Years of Coaching Excellence</strong><br>Trained 1000+ athletes from beginner to competitive levels across Karnataka</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /trainer-info -->
+  </div><!-- /trainer-grid -->
+</section>
+
+
+<!-- TEAM -->
+<section id="team">
+  <div class="team-orb1"></div>
+  <div class="team-orb2"></div>
+  <div class="team-intro reveal">
+    <div class="section-eyebrow" style="justify-content:center;">The Coaching Staff</div>
+    <h2 class="section-title">FORGED BY<br><span>CHAMPIONS.</span></h2>
+    <p style="color:var(--gray);font-size:0.95rem;max-width:560px;margin:1.2rem auto 0;line-height:1.8;">Every trainer at Athletes Revolution has bled for their craft — in rings, on tracks, and on the competition floor. They don&#8217;t just teach. They transform.</p>
+  </div>
+
+  <div class="team-cards">
+
+    <div class="tc reveal-left">
+      <div class="tc-photo-area">
+        <img class="tc-photo" src="images/gautham.jpeg" alt="Gautham">
+        <div class="tc-photo-overlay"></div>
+        <div class="tc-number">01</div>
+        <div class="tc-discipline-badge">&#x1F94A; Boxing</div>
+        <div class="tc-name-block">
+          <div class="tc-name">Gautham</div>
+          <div class="tc-role">Professional Boxer · Head Boxing Coach</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        <div class="tc-stat-row">
+          <div class="tc-stat"><div class="tc-stat-val">9+</div><div class="tc-stat-lbl">Years Elite</div></div>
+          <div class="tc-stat"><div class="tc-stat-val">6&#xD7;</div><div class="tc-stat-lbl">State Gold</div></div>
+          <div class="tc-stat"><div class="tc-stat-val">&#x221E;</div><div class="tc-stat-lbl">Warriors Trained</div></div>
+        </div>
+        <div class="tc-quote">&#8220;The ring doesn&#8217;t lie. Neither does the training.&#8221;</div>
+        <p class="tc-bio">
+          Gautham isn&#8217;t just a coach &#8212; he&#8217;s a <strong>6-time State Gold Medalist</strong> and active professional boxer who has spent nearly a decade mastering the technical and mental demands of elite competition. As the founder of <strong>@boxing_warriors_28</strong>, he has built a philosophy that bridges the gap between ring warfare and high-performance fitness. His sessions are built on precision, upgraded knowledge, and a competitor&#8217;s instinct that no textbook can replicate. When Gautham teaches a combination, it&#8217;s because he&#8217;s <strong>thrown it in a real fight</strong>.
+        </p>
+        <div class="tc-tags">
+          <span class="tc-tag">&#x1F94A; Technical Boxing</span>
+          <span class="tc-tag">&#x26A1; Speed &amp; Reflexes</span>
+          <span class="tc-tag">&#x1F480; Fight Conditioning</span>
+          <span class="tc-tag">&#x1F9E0; Combat Mindset</span>
+        </div>
+        <div class="tc-achs">
+          <div class="tc-ach"><div class="tc-ach-icon">&#x1F947;</div><div><strong>6&#xD7; Karnataka State Gold Medalist</strong> &#8212; Elite amateur boxing, multi-year unbeaten run at state level</div></div>
+          <div class="tc-ach"><div class="tc-ach-icon">&#x1F3C6;</div><div><strong>Founder of @boxing_warriors_28</strong> &#8212; A grassroots fight training community built on professional technique &amp; accessible coaching</div></div>
+          <div class="tc-ach"><div class="tc-ach-icon">&#x26A1;</div><div><strong>9+ Years of Upgraded Ring Science</strong> &#8212; Curriculum continuously evolves from professional bouts, not just gym theory</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc reveal-right">
+      <div class="tc-photo-area">
+        <img class="tc-photo" src="images/joseph.jpeg" alt="Joseph D&#8217;Souza"/>
+        <div class="tc-photo-overlay"></div>
+        <div class="tc-number">02</div>
+        <div class="tc-discipline-badge">&#x1F525; CrossFit &amp; Calisthenics</div>
+        <div class="tc-name-block">
+          <div class="tc-name">Joseph D&#8217;Souza</div>
+          <div class="tc-role">Elite Athlete · Specialist Trainer</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        <div class="tc-stat-row">
+          <div class="tc-stat"><div class="tc-stat-val">6</div><div class="tc-stat-lbl">Yrs at AR</div></div>
+          <div class="tc-stat"><div class="tc-stat-val">Top 10</div><div class="tc-stat-lbl">National/Asian</div></div>
+          <div class="tc-stat"><div class="tc-stat-val">4</div><div class="tc-stat-lbl">Disciplines</div></div>
+        </div>
+        <div class="tc-quote">&#8220;A competitor&#8217;s edge isn&#8217;t given. It&#8217;s built &#8212; every single rep.&#8221;</div>
+        <p class="tc-bio">
+          Joseph&#8217;s story is Athletes Revolution&#8217;s story &#8212; he started here as a student, competed at the <strong>highest national and Asian levels</strong>, and never left. Over 6 years he evolved from elite competitor to one of the gym&#8217;s most sought-after trainers. He has earned <strong>Top 10 finishes</strong> at Devil&#8217;s Circuit, Wild Warriors, Hy-Fit, and the Yodha Race. Today he brings that same relentless competitor&#8217;s DNA into every session &#8212; teaching <strong>body control, functional strength, and the mental resilience</strong> that separates good athletes from great ones.
+        </p>
+        <div class="tc-tags">
+          <span class="tc-tag">&#x1F525; CrossFit</span>
+          <span class="tc-tag">&#x1F3C3; Athletics</span>
+          <span class="tc-tag">&#x1F4AA; Calisthenics</span>
+          <span class="tc-tag">&#x1F9B5; Kickboxing</span>
+        </div>
+        <div class="tc-achs">
+          <div class="tc-ach"><div class="tc-ach-icon">&#x1F3C5;</div><div><strong>Top 10 &#8212; National &amp; Asian-Level Events</strong> &#8212; Devil&#8217;s Circuit, Wild Warriors, Hy-Fit &amp; Yodha Race</div></div>
+          <div class="tc-ach"><div class="tc-ach-icon">&#x1F3C6;</div><div><strong>6-Year Legacy at AR</strong> &#8212; From student-athlete to specialist coach, a career forged in the same arena he now masters</div></div>
+          <div class="tc-ach"><div class="tc-ach-icon">&#x26A1;</div><div><strong>Multi-Discipline Mastery</strong> &#8212; Rare cross-training expertise across CrossFit, Athletics, Calisthenics &amp; Kickboxing</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ MEDIA ══════ -->
+<section id="media" style="background:var(--dark);">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-eyebrow" style="justify-content:center;">Media Gallery</div>
+    <h2 class="section-title">INSIDE <span>ATHLETES</span><br>REVOLUTION.</h2>
+  </div>
+
+  <!-- Tab controls -->
+  <div class="reveal" style="display:flex;justify-content:center;">
+    <div class="media-tabs">
+      <button class="media-tab active" onclick="switchTab('images',this)">📸 Images</button>
+      <div class="media-tab-divider"></div>
+      <button class="media-tab" onclick="switchTab('videos',this)">▶️ Videos</button>
+      <div class="media-tab-divider"></div>
+      <button class="media-tab" onclick="switchTab('certs',this)">🎖️ Certificates</button>
+    </div>
+  </div>
+
+  <!-- ── IMAGES PANEL ── -->
+  <div class="media-panel active" id="panel-images">
+    <div class="media-images-grid">
+      <!-- Slot 1 — Replace src with your own photos -->
+      <div class="mi">
+        <img src="images/WhatsApp Image 2026-04-22 at 10.18.16 PM.jpeg" alt="Gym Image 1"/>
+        <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
+        <div class="mi-upload-label">Gym Photo 1</div>
+      </div>
+      <!-- Slot 2 -->
+      <div class="mi">
+        <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=600&q=80" alt="Gym Image 2"/>
+        <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
+        <div class="mi-upload-label">Gym Photo 2</div>
+      </div>
+      <!-- Slot 3 -->
+      <div class="mi">
+        <img src="images/joseph.jpeg" alt="Gym Image 3"/>
+        <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
+        <div class="mi-upload-label">Gym Photo 3</div>
+      </div>
+      <!-- Slot 4 -->
+      <div class="mi">
+        <img src="images/WhatsApp Image 2026-04-22 at 11.03.24 PM.jpeg" alt="Gym Image 4"/>
+        <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
+        <div class="mi-upload-label">Gym Photo 4</div>
+      </div>
+      <!-- Slot 5 -->
+      <div class="mi">
+        <img src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=600&q=80" alt="Gym Image 5"/>
+        <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
+        <div class="mi-upload-label">Gym Photo 5</div>
+      </div>
+      <!-- Slot 6 -->
+      <div class="mi">
+        <img src="images/WhatsApp Image 2026-04-20 at 9.38.05 AM (1).jpeg" alt="Gym Image 6"/>
+        <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
+        <div class="mi-upload-label">Gym Photo 6</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:1.5rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);">
+      ↑ Replace the image URLs above with your actual gym photos
+    </p>
+  </div>
+
+  <!-- ── VIDEOS PANEL ── -->
+  <!-- ── VIDEOS PANEL ── -->
+<!-- ── VIDEOS PANEL ── -->
+<div class="media-panel" id="panel-videos">
+  <div class="media-videos-grid">
+
+    <div class="mv" onclick="openVideo('0ZRVc9dRKvw')">
+      <img class="mv-thumb" src="https://i.ytimg.com/vi/0ZRVc9dRKvw/hqdefault.jpg"/>
+      <div class="mv-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+
+    <div class="mv" onclick="openVideo('zy2aM3bFsGo')">
+      <img class="mv-thumb" src="https://i.ytimg.com/vi/zy2aM3bFsGo/hqdefault.jpg"/>
+      <div class="mv-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+
+    <div class="mv" onclick="openVideo('4R7CWti4-GE')">
+      <img class="mv-thumb" src="https://i.ytimg.com/vi/4R7CWti4-GE/hqdefault.jpg"/>
+      <div class="mv-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+
+    <div class="mv" onclick="openVideo('l89gDVJ4b9E')">
+      <img class="mv-thumb" src="https://i.ytimg.com/vi/l89gDVJ4b9E/hqdefault.jpg"/>
+      <div class="mv-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+
+    <div class="mv" onclick="openVideo('S3wyYdbpNZY')">
+      <img class="mv-thumb" src="https://i.ytimg.com/vi/S3wyYdbpNZY/hqdefault.jpg"/>
+      <div class="mv-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+
+    <div class="mv" onclick="openVideo('2WCsO3byXGY')">
+      <img class="mv-thumb" src="https://i.ytimg.com/vi/2WCsO3byXGY/hqdefault.jpg"/>
+      <div class="mv-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- ── CERTIFICATES PANEL ── -->
+  <div class="media-panel" id="panel-certs">
+    <div class="media-certs-grid">
+      <div class="mc reveal">
+        <img class="mc-img" src="certificates/WhatsApp Image 2026-04-21 at 10.16.35 PM (1).jpeg" alt="Certificate 1"/>
+        <div class="mc-caption">🏅 Achievement Certificate</div>
+      </div>
+      <div class="mc reveal">
+        <img class="mc-img" src="certificates/WhatsApp Image 2026-04-21 at 10.16.35 PM.jpeg" alt="Certificate 2"/>
+        <div class="mc-caption">🥇 Achievement Certificate</div>
+      </div>
+      <div class="mc reveal">
+        <img class="mc-img" src="certificates/WhatsApp Image 2026-04-21 at 10.16.45 PM.jpeg" alt="Certificate 3"/>
+        <div class="mc-caption">🏆 Achievement Certificate</div>
+      </div>
+      <div class="mc reveal">
+        <img class="mc-img" src="certificates/WhatsApp Image 2026-04-21 at 10.44.19 PM.jpeg" alt="Certificate 4"/>
+        <div class="mc-caption">🏅 Achievement Certificate</div>
+      </div>
+      <div class="mc reveal">
+        <img class="mc-img" src="certificates/WhatsApp Image 2026-04-21 at 10.44.20 PM.jpeg" alt="Certificate 5"/>
+        <div class="mc-caption">🥇 Achievement Certificate</div>
+      </div>
+      <div class="mc reveal">
+        <img class="mc-img" src="certificates/WhatsApp Image 2026-04-21 at 10.45.13 PM (1).jpeg" alt="Certificate 6"/>
+        <div class="mc-caption">🏆 Achievement Certificate</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- YouTube Lightbox -->
+<!-- YouTube Lightbox -->
+<div id="yt-lightbox" onclick="closeVideo(event)">
+
+  <div id="yt-lightbox-inner">
+
+    <button id="yt-close" onclick="closeVideo(event)">
+      ✕
+    </button>
+
+    <iframe
+      id="yt-frame"
+      src=""
+      allowfullscreen
+      allow="autoplay; encrypted-media"
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+
+  </div>
+
+</div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal-left">
+      <img class="about-img" src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=700&q=80" alt="Coach"/>
+      <div class="about-tag"><span>5.0★</span>Highest Rated<br>in Kammanahalli</div>
+    </div>
+    <div class="reveal-right">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">MORE THAN<br>A <span>GYM.</span></h2>
+      <p class="about-text">Athletes Revolution is not just a place to work out — it's a movement. Built by athletes, for athletes, we've created a community where every member is pushed to discover their true potential.</p>
+      <p class="about-text">From boxing to bodybuilding, from yoga to sports conditioning — every program is designed with one goal: to transform you into the best version of yourself.</p>
+      <div class="about-features">
+        <div class="af">Expert Certified Coaches</div>
+        <div class="af">State-of-the-Art Equipment</div>
+        <div class="af">Programs for All Ages & Levels</div>
+        <div class="af">Competition Preparation</div>
+        <div class="af">Kids Athletic Development</div>
+        <div class="af">Open 7 Days a Week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="background:var(--dark);">
+  <div class="reveal" style="text-align:center;">
+    <div class="section-eyebrow" style="justify-content:center;">Member Reviews</div>
+    <h2 class="section-title">REAL PEOPLE.<br><span>REAL RESULTS.</span></h2>
+  </div>
+  <div class="reviews-grid reveal">
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"Best gym in the area — the trainers are knowledgeable, friendly, and give personal attention to every member. The variety of programs is incredible."</div>
+      <div class="rv-author">Priya Menon</div>
+      <div class="rv-platform">Google Review</div>
+    </div>
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"Athletes Revolution has completely transformed my fitness journey. The boxing program especially — the coaches are top class and really push you to improve."</div>
+      <div class="rv-author">Rahul Krishnamurthy</div>
+      <div class="rv-platform">Google Review</div>
+    </div>
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"Enrolled my son in the kids program and the results are amazing. Discipline, fitness, confidence — he's improved in all areas. Highly recommended for families."</div>
+      <div class="rv-author">Sunita Rajan</div>
+      <div class="rv-platform">Google Review</div>
+    </div>
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"Rated 4.9 across 209 reviews on Justdial — Athletes Revolution is consistently excellent. The atmosphere is motivating and the coaching is truly elite level."</div>
+      <div class="rv-author">Justdial Member</div>
+      <div class="rv-platform">Justdial Review</div>
+    </div>
+  </div>
+  <div class="reviews-summary reveal">
+    <div class="rs"><div class="rs-num">5.0</div><div class="rs-label">Google Rating</div></div>
+    <div class="rs"><div class="rs-num">207+</div><div class="rs-label">Google Reviews</div></div>
+    <div class="rs"><div class="rs-num">4.9</div><div class="rs-label">Justdial Rating</div></div>
+    <div class="rs"><div class="rs-num">209+</div><div class="rs-label">Justdial Reviews</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal-left">
+      <div class="section-eyebrow">Find Us</div>
+      <h2 class="big-cta">START YOUR<br><span>REVOLUTION</span><br>TODAY.</h2>
+      <p class="contact-desc">Stop waiting. Walk in, start training, and join the highest-rated fitness community in Kammanahalli.</p>
+      <div class="contact-items">
+        <div class="ci">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-label">Address</div>
+            <div class="ci-val">2nd Floor, 45, Oil Mill Rd, Aravind Nagar, Kammanahalli, Bengaluru 560084<br><small style="color:var(--gray);">Next to Kalyani Bar & Restaurant</small></div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">Call / WhatsApp</div>
+            <div class="ci-val"><a href="tel:08401150426">084011 50426</a></div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">🕐</div>
+          <div>
+            <div class="ci-label">Hours</div>
+            <div class="ci-val">Mon–Sun: Open Daily · Peak: 8 AM onwards</div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">🗺️</div>
+          <div>
+            <div class="ci-label">Google Maps</div>
+            <div class="ci-val"><a href="https://maps.google.com/?q=Athletes+Revolution+Fitness+Center+45+Oil+Mill+Road+Kammanahalli+Bengaluru" target="_blank">Get Directions →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3!2d77.6420!3d13.0090!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAthletes+Revolution+Fitness+Center%2C+45+Oil+Mill+Rd%2C+Kammanahalli%2C+Bengaluru!5e0!3m2!1sen!2sin!4v1"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="join-form">
+        <div class="jf-title">⚡ GET A <span>FREE TRIAL</span></div>
+        <div class="jf-group"><input type="text" placeholder="Your Name" id="jf-name"/></div>
+        <div class="jf-group"><input type="tel" placeholder="WhatsApp Number" id="jf-phone"/></div>
+        <div class="jf-group">
+          <select id="jf-goal">
+            <option value="">Your Fitness Goal</option>
+            <option>Build Muscle / Strength Training</option>
+            <option>Boxing / Kickboxing</option>
+            <option>Weight Loss / Body Shaping</option>
+            <option>Sports Conditioning</option>
+            <option>Personal Training</option>
+            <option>Kids Athletic Program</option>
+            <option>Yoga & Flexibility</option>
+            <option>Competition Preparation</option>
+          </select>
+        </div>
+        <button class="jf-submit" onclick="joinNow()">💬 SEND FREE TRIAL REQUEST ON WHATSAPP</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ATHLETES <span>REVOLUTION</span></div>
+  <div class="footer-tagline">Train Hard. Rise Above. Be The Revolution.</div>
+  <div class="footer-copy">© 2025 Athletes Revolution Fitness Center · 45, Oil Mill Rd, Kammanahalli, Bengaluru · 084011 50426</div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/918401150426?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20Fitness%20Center%20and%20know%20more%20about%20membership." target="_blank" class="wa-float">💬</a>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),cr=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animR(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(animR);})();
+
+// LOADER
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const l=document.getElementById('loader');
+    l.style.opacity='0';l.style.transition='opacity .6s';
+    setTimeout(()=>l.style.display='none',700);
+  },2200);
+});
+
+// REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(r=>obs.observe(r));
+
+// MEDIA TABS
+function switchTab(panel, btn) {
+  document.querySelectorAll('.media-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.media-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + panel).classList.add('active');
+  btn.classList.add('active');
+}
+
+// VIDEO LIGHTBOX
+function openVideo(id){
+  const lb = document.getElementById('yt-lightbox');
+  const fr = document.getElementById('yt-frame');
+
+  fr.src = 'https://www.youtube.com/embed/' + id + '?rel=0&modestbranding=1&playsinline=1&autoplay=1';
+  
+
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+  // fallback silently
+ 
+function closeVideo(e){
+  if(e && e.target!==document.getElementById('yt-lightbox') && e.target!==document.getElementById('yt-close')) return;
+  const lb=document.getElementById('yt-lightbox');
+  document.getElementById('yt-frame').src='';
+  lb.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideo({target:document.getElementById('yt-lightbox')});});
+
+function joinNow(){
+  const name=document.getElementById('jf-name').value||'Not provided';
+  const phone=document.getElementById('jf-phone').value||'Not provided';
+  const goal=document.getElementById('jf-goal').value||'Not specified';
+  const msg=`Hi Athletes Revolution! ⚡\n\nFree Trial Request:\n👤 Name: ${name}\n📞 Phone: ${phone}\n🎯 Goal: ${goal}\n\nPlease confirm my free trial session!`;
+  window.open('https://wa.me/918401150426?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+</body>
+</html>
