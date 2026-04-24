@@ -66,85 +66,270 @@ nav{
 .nav-btn:hover{background:var(--cyan);color:var(--bg);transform:translateY(-1px);}
 
 /* HERO */
-#hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;}
+#hero{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
 
 .hero-bg-img{
-  position:absolute;inset:0;z-index:0;
+  position:absolute;
+  inset:0;
+  z-index:0;
   background:url('https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1600&q=80') center/cover no-repeat;
   filter:brightness(0.25) saturate(0.8);
 }
+
 .hero-overlay{
-  position:absolute;inset:0;z-index:1;
+  position:absolute;
+  inset:0;
+  z-index:1;
   background:
     linear-gradient(135deg,rgba(5,5,7,0.95) 40%,rgba(26,108,255,0.08) 100%),
     linear-gradient(to top,rgba(5,5,7,1) 0%,transparent 60%);
 }
+
 /* Grid lines */
 .hero-grid{
-  position:absolute;inset:0;z-index:1;
-  background-image:linear-gradient(rgba(26,108,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,108,255,0.04) 1px,transparent 1px);
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background-image:
+    linear-gradient(rgba(26,108,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,108,255,0.04) 1px,transparent 1px);
   background-size:60px 60px;
 }
+
 /* Blue glow orb */
 .hero-orb{
-  position:absolute;right:15%;top:30%;width:500px;height:500px;border-radius:50%;
+  position:absolute;
+  right:15%;
+  top:30%;
+  width:500px;
+  height:500px;
+  border-radius:50%;
   background:radial-gradient(circle,rgba(26,108,255,0.2) 0%,transparent 70%);
-  z-index:1;filter:blur(60px);
+  z-index:1;
+  filter:blur(60px);
 }
 
-.hero-content{position:relative;z-index:3;padding:0 5vw;max-width:700px;padding-top:80px;}
+/* ===== LOGO RIGHT SIDE ===== */
+
+.hero-logo{
+  position:absolute;
+  right:3%;
+  top:54%;
+  transform:translateY(-50%);
+  z-index:2;
+  pointer-events:none;
+}
+
+.hero-logo img{
+  width:560px;
+  max-width:42vw;
+  opacity:0.96;
+
+  filter:
+    drop-shadow(0 0 12px rgba(255,255,255,0.35))
+    drop-shadow(0 0 30px rgba(0,183,255,0.35));
+
+  animation:floatLogo 4s ease-in-out infinite;
+}
+
+@keyframes floatLogo{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0px);}
+}
+
+/* ===== CONTENT ===== */
+
+.hero-content{
+  position:relative;
+  z-index:3;
+  padding:0 5vw;
+  max-width:700px;
+  padding-top:80px;
+}
+
 .hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(26,108,255,0.15);border:1px solid rgba(26,108,255,0.3);
-  padding:6px 16px;border-radius:2px;margin-bottom:2rem;
-  font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(26,108,255,0.15);
+  border:1px solid rgba(26,108,255,0.3);
+  padding:6px 16px;
+  border-radius:2px;
+  margin-bottom:2rem;
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.8rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--cyan);
   animation:fadeUp .6s ease both;
 }
-.hero-badge::before{content:'';width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 1.5s ease infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+
+.hero-badge::before{
+  content:'';
+  width:6px;
+  height:6px;
+  background:var(--cyan);
+  border-radius:50%;
+  animation:pulse 1.5s ease infinite;
+}
+
+@keyframes pulse{
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
+  }
+  50%{
+    opacity:.5;
+    transform:scale(1.3);
+  }
+}
 
 .hero-title{
-  font-family:'Oswald',sans-serif;font-size:clamp(3.5rem,9vw,9.5rem);
-  font-weight:700;line-height:0.88;letter-spacing:0.01em;text-transform:uppercase;
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(3.5rem,9vw,9.5rem);
+  font-weight:700;
+  line-height:0.88;
+  letter-spacing:0.01em;
+  text-transform:uppercase;
   animation:fadeUp .6s .1s ease both;
 }
-.hero-title .t1{color:var(--white);display:block;}
-.hero-title .t2{color:transparent;-webkit-text-stroke:2px var(--cyan);display:block;}
+
+.hero-title .t1{
+  color:var(--white);
+  display:block;
+}
+
+.hero-title .t2{
+  color:var(--white);
+  display:block;
+}
+
 .hero-title .t3{
   display:block;
   background:linear-gradient(90deg,var(--blue),var(--cyan));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .hero-sub{
   margin-top:1.8rem;
-  font-family:'Rajdhani',sans-serif;font-size:1.15rem;font-weight:500;letter-spacing:0.05em;
-  color:rgba(240,240,248,0.55);max-width:480px;line-height:1.6;
+  font-family:'Rajdhani',sans-serif;
+  font-size:1.15rem;
+  font-weight:500;
+  letter-spacing:0.05em;
+  color:rgba(240,240,248,0.55);
+  max-width:480px;
+  line-height:1.6;
   animation:fadeUp .6s .2s ease both;
 }
 
 .hero-stats{
-  display:flex;gap:2.5rem;margin-top:2.5rem;
+  display:flex;
+  gap:2.5rem;
+  margin-top:2.5rem;
   animation:fadeUp .6s .3s ease both;
 }
-.hstat{border-left:2px solid var(--blue);padding-left:1rem;}
-.hstat-num{font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;color:var(--cyan);line-height:1;}
-.hstat-label{font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-top:2px;}
 
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:2.5rem;animation:fadeUp .6s .4s ease both;}
+.hstat{
+  border-left:2px solid var(--blue);
+  padding-left:1rem;
+}
+
+.hstat-num{
+  font-family:'Oswald',sans-serif;
+  font-size:2.2rem;
+  font-weight:700;
+  color:var(--cyan);
+  line-height:1;
+}
+
+.hstat-label{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.8rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--gray);
+  margin-top:2px;
+}
+
+.hero-btns{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:2.5rem;
+  animation:fadeUp .6s .4s ease both;
+}
+
 .btn-primary{
-  background:var(--blue);color:white;padding:15px 36px;
-  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;
-  text-decoration:none;cursor:none;border-radius:2px;
-  box-shadow:0 0 30px rgba(26,108,255,0.3);transition:all .2s;
+  background:var(--blue);
+  color:white;
+  padding:15px 36px;
+  font-family:'Rajdhani',sans-serif;
+  font-weight:700;
+  font-size:1rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:none;
+  border-radius:2px;
+  box-shadow:0 0 30px rgba(26,108,255,0.3);
+  transition:all .2s;
 }
-.btn-primary:hover{background:var(--cyan);color:var(--bg);box-shadow:0 0 40px rgba(0,212,255,0.4);transform:translateY(-2px);}
+
+.btn-primary:hover{
+  background:var(--cyan);
+  color:var(--bg);
+  box-shadow:0 0 40px rgba(0,212,255,0.4);
+  transform:translateY(-2px);
+}
+
 .btn-outline{
-  border:1.5px solid rgba(240,240,248,0.2);color:var(--white);padding:15px 36px;
-  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;
-  text-decoration:none;cursor:none;border-radius:2px;transition:all .2s;
+  border:1.5px solid rgba(240,240,248,0.2);
+  color:var(--white);
+  padding:15px 36px;
+  font-family:'Rajdhani',sans-serif;
+  font-weight:700;
+  font-size:1rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:none;
+  border-radius:2px;
+  transition:all .2s;
 }
-.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);}
+
+.btn-outline:hover{
+  border-color:var(--cyan);
+  color:var(--cyan);
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px){
+
+  .hero-logo{
+    position:relative;
+    right:auto;
+    top:auto;
+    transform:none;
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
+  }
+
+  .hero-logo img{
+    width:260px;
+    max-width:85%;
+  }
+
+}
 
 /* REVEAL */
 .reveal,.reveal-left,.reveal-right{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
@@ -746,7 +931,7 @@ footer{
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">AR <span>FITNESS</span></a>
+  <a href="#hero" class="nav-logo">ATHLETES <span>REVOLUTION</span></a>
   <ul class="nav-links">
     <li><a href="#programs">Programs</a></li>
     <li><a href="#trainer">Trainer</a></li>
@@ -756,7 +941,7 @@ footer{
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="https://wa.me/918401150426?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20Fitness%20Center." target="_blank" class="nav-btn">Join Now</a>
+  <a href="https://wa.me/919035542067?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20Fitness%20Center." target="_blank" class="nav-btn">Join Now</a>
 </nav>
 
 <!-- HERO -->
@@ -765,22 +950,26 @@ footer{
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
   <div class="hero-orb"></div>
+  <!-- ADD THIS LOGO DIV -->
+  <div class="hero-logo">
+    <img src="images/lg.png" alt="AR Fitness Logo">
+  </div>
   <div class="hero-content">
-    <div class="hero-badge">⚡ 5.0 Stars · 207 Google Reviews</div>
+    <div class="hero-badge">⚡ FITNESS CENTER</div>
     <h1 class="hero-title">
       <span class="t1">ATHLETES</span>
       <span class="t2">REVOLUTION</span>
-      <span class="t3">FITNESS</span>
+      
     </h1>
     <p class="hero-sub">Elite training. Transformative results. A community built on discipline and ambition — Kammanahalli's highest-rated fitness center.</p>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-num">5.0</div><div class="hstat-label">Google Rating</div></div>
       <div class="hstat"><div class="hstat-num">207+</div><div class="hstat-label">Reviews</div></div>
       <div class="hstat"><div class="hstat-num">8+</div><div class="hstat-label">Programs</div></div>
-      <div class="hstat"><div class="hstat-num">2016</div><div class="hstat-label">Est.</div></div>
+      <div class="hstat"><div class="hstat-num">2020</div><div class="hstat-label">Est.</div></div>
     </div>
     <div class="hero-btns">
-      <a href="https://wa.me/918401150426?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20and%20know%20more%20about%20membership." target="_blank" class="btn-primary">💪 Start Free Trial</a>
+      <a href="https://wa.me/919035542067?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20and%20know%20more%20about%20membership." target="_blank" class="btn-primary">💪 Start Free Trial</a>
       <a href="https://maps.google.com/?q=Athletes+Revolution+Fitness+Center+45+Oil+Mill+Road+Kammanahalli+Bengaluru" target="_blank" class="btn-outline">📍 Get Directions</a>
     </div>
   </div>
@@ -844,19 +1033,19 @@ footer{
   </div>
   <div class="gallery-grid reveal" style="margin-top:4rem;">
     <div class="gg">
-      <img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=600&q=80" alt="Training"/>
+      <img src="images/22.jpeg" alt="Training"/>
       <div class="gg-overlay"><div class="gg-label">STRENGTH <span>TRAINING</span></div></div>
     </div>
     <div class="gg">
-      <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=600&q=80" alt="Boxing"/>
+      <img src="images/11.jpeg" alt="Boxing"/>
       <div class="gg-overlay"><div class="gg-label">BOXING <span>PROGRAM</span></div></div>
     </div>
     <div class="gg">
-      <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=600&q=80" alt="Group Training"/>
+      <img src="images/33.jpeg" alt="Group Training"/>
       <div class="gg-overlay"><div class="gg-label">GROUP <span>TRAINING</span></div></div>
     </div>
     <div class="gg">
-      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80" alt="Functional Fitness"/>
+      <img src="images/44.jpeg" alt="Functional Fitness"/>
       <div class="gg-overlay"><div class="gg-label">FUNCTIONAL <span>FITNESS</span></div></div>
     </div>
   </div>
@@ -1064,13 +1253,13 @@ footer{
     <div class="media-images-grid">
       <!-- Slot 1 — Replace src with your own photos -->
       <div class="mi">
-        <img src="images/WhatsApp Image 2026-04-22 at 10.18.16 PM.jpeg" alt="Gym Image 1"/>
+        <img src="images/1.jpeg" alt="Gym Image 1"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
         <div class="mi-upload-label">Gym Photo 1</div>
       </div>
       <!-- Slot 2 -->
       <div class="mi">
-        <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=600&q=80" alt="Gym Image 2"/>
+        <img src="images/2.jpeg" alt="Gym Image 2"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
         <div class="mi-upload-label">Gym Photo 2</div>
       </div>
@@ -1082,19 +1271,19 @@ footer{
       </div>
       <!-- Slot 4 -->
       <div class="mi">
-        <img src="images/WhatsApp Image 2026-04-22 at 11.03.24 PM.jpeg" alt="Gym Image 4"/>
+        <img src="images/5.jpeg" alt="Gym Image 4"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
         <div class="mi-upload-label">Gym Photo 4</div>
       </div>
       <!-- Slot 5 -->
       <div class="mi">
-        <img src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=600&q=80" alt="Gym Image 5"/>
+        <img src="images/6.jpeg" alt="Gym Image 5"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
         <div class="mi-upload-label">Gym Photo 5</div>
       </div>
       <!-- Slot 6 -->
       <div class="mi">
-        <img src="images/WhatsApp Image 2026-04-20 at 9.38.05 AM (1).jpeg" alt="Gym Image 6"/>
+        <img src="images/WhatsApp Image 2026-04-22 at 11.03.24 PM.jpeg" alt="Gym Image 6"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
         <div class="mi-upload-label">Gym Photo 6</div>
       </div>
@@ -1212,7 +1401,7 @@ footer{
 <section id="about">
   <div class="about-grid">
     <div class="about-img-wrap reveal-left">
-      <img class="about-img" src="https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?w=700&q=80" alt="Coach"/>
+      <img class="about-img" src="images/11.jpeg" alt="Coach"/>
       <div class="about-tag"><span>5.0★</span>Highest Rated<br>in Kammanahalli</div>
     </div>
     <div class="reveal-right">
@@ -1291,7 +1480,7 @@ footer{
           <div class="ci-icon">📞</div>
           <div>
             <div class="ci-label">Call / WhatsApp</div>
-            <div class="ci-val"><a href="tel:08401150426">084011 50426</a></div>
+            <div class="ci-val"><a href="tel:09035542067">09035542067</a></div>
           </div>
         </div>
         <div class="ci">
@@ -1344,11 +1533,11 @@ footer{
 <footer>
   <div class="footer-logo">ATHLETES <span>REVOLUTION</span></div>
   <div class="footer-tagline">Train Hard. Rise Above. Be The Revolution.</div>
-  <div class="footer-copy">© 2025 Athletes Revolution Fitness Center · 45, Oil Mill Rd, Kammanahalli, Bengaluru · 084011 50426</div>
+  <div class="footer-copy">© 2025 Athletes Revolution Fitness Center · 45, Oil Mill Rd, Kammanahalli, Bengaluru · 09035542067</div>
 </footer>
 
 <!-- WA FLOAT -->
-<a href="https://wa.me/918401150426?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20Fitness%20Center%20and%20know%20more%20about%20membership." target="_blank" class="wa-float">💬</a>
+<a href="https://wa.me/919035542067?text=Hi!%20I%20want%20to%20join%20Athletes%20Revolution%20Fitness%20Center%20and%20know%20more%20about%20membership." target="_blank" class="wa-float">💬</a>
 
 <script>
 // CURSOR
@@ -1408,7 +1597,7 @@ function joinNow(){
   const phone=document.getElementById('jf-phone').value||'Not provided';
   const goal=document.getElementById('jf-goal').value||'Not specified';
   const msg=`Hi Athletes Revolution! ⚡\n\nFree Trial Request:\n👤 Name: ${name}\n📞 Phone: ${phone}\n🎯 Goal: ${goal}\n\nPlease confirm my free trial session!`;
-  window.open('https://wa.me/918401150426?text='+encodeURIComponent(msg),'_blank');
+  window.open('https://wa.me/919035542067?text='+encodeURIComponent(msg),'_blank');
 }
 </script>
 </body>
