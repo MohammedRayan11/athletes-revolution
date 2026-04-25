@@ -605,6 +605,7 @@ footer{
 
 /* ── TRAINER SECTION ── */
 #trainer{background:var(--bg);position:relative;overflow:hidden;}
+.trainer-photo-wrap,.trainer-info{opacity:1;transform:none;}
 #trainer::before{
   content:'';position:absolute;top:-200px;right:-200px;
   width:600px;height:600px;border-radius:50%;
@@ -1031,6 +1032,62 @@ footer{
   body{cursor:auto;}
   .btn-primary,.btn-outline,.nav-btn,.pg,.gg,.jf-submit,.wa-float,.mv,.media-tab{cursor:pointer;}
 }
+
+@media(max-width:768px){
+
+  /* FIX TRAINER SECTION */
+  .trainer-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+  .trainer-photo-wrap{
+    max-width:100%;
+  }
+
+  /* FIX TEAM CARDS */
+  .tc-photo-area{
+    height:300px;
+  }
+
+  /* FIX ACHIEVEMENT STRIP */
+  .achieve-strip{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .as-item{
+    width:100%;
+  }
+
+  /* FIX MEDIA GRID */
+  .media-images-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .media-videos-grid{
+    grid-template-columns:1fr;
+  }
+
+  /* FIX GALLERY */
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  /* FIX TEXT OVERFLOW */
+  .section-title{
+    font-size:2rem;
+    line-height:1.1;
+  }
+
+  /* FIX HERO STATS */
+  .hero-stats{
+    flex-direction:column;
+    gap:1rem;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -1186,7 +1243,7 @@ footer{
   <div class="trainer-grid">
 
     <!-- Photo -->
-    <div class="trainer-photo-wrap reveal-left">
+    <div class="trainer-photo-wrap">
       <div class="trainer-photo-frame">
         <!-- Replace src below with actual trainer photo -->
         <img
@@ -1203,7 +1260,7 @@ footer{
     </div>
 
     <!-- Info -->
-    <div class="trainer-info reveal-right">
+    <div class="trainer-info">
 
       <!-- Quick Meta -->
       <div class="trainer-meta-grid">
@@ -1726,3 +1783,4 @@ function joinNow(){
 </script>
 </body>
 </html>
+
