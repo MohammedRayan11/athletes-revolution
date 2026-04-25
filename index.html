@@ -310,24 +310,80 @@ nav{
   color:var(--cyan);
 }
 
-/* ===== MOBILE ===== */
-
 @media(max-width:900px){
 
+  /* GENERAL FIX */
+  section{
+    padding:60px 20px;
+  }
+
+  /* NAV */
+  .nav-links{
+    display:none;
+  }
+
+  /* HERO — stack vertically on mobile */
+  #hero{
+    flex-direction:column;
+    align-items:flex-start;
+    min-height:100vh;
+    padding-bottom:50px;
+  }
+
+  .hero-content{
+    padding:100px 20px 30px;
+    max-width:100%;
+    width:100%;
+    position:relative;
+    z-index:3;
+  }
+
+  .hero-title{
+    font-size:clamp(2.8rem,10vw,4rem);
+    line-height:1;
+  }
+
+  .hero-sub{
+    font-size:1rem;
+    max-width:100%;
+  }
+
+  .hero-stats{
+    flex-wrap:wrap;
+    gap:1.2rem;
+  }
+
+  .hero-btns{
+    flex-direction:column;
+  }
+
+  .btn-primary,
+  .btn-outline{
+    width:100%;
+    text-align:center;
+  }
+
+  /* LOGO — show below content on mobile */
   .hero-logo{
     position:relative;
-    right:auto;
     top:auto;
+    right:auto;
     transform:none;
     display:flex;
     justify-content:center;
-    margin-top:30px;
+    width:100%;
+    padding:0 20px 30px;
+    z-index:2;
   }
 
   .hero-logo img{
-    width:260px;
-    max-width:85%;
+    width:200px;
+    max-width:65%;
+    height:auto;
+    animation:none;
   }
+
+  /* TRAINER */
   .trainer-grid{
     grid-template-columns:1fr;
     gap:2rem;
@@ -337,8 +393,45 @@ nav{
     max-width:100%;
   }
 
-  .trainer-photo{
-    aspect-ratio:3/4;
+  .trainer-meta-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+  /* GALLERY */
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  /* MEDIA */
+  .media-images-grid,
+  .media-videos-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  /* TEAM */
+  .team-cards{
+    grid-template-columns:1fr;
+  }
+
+  .tc-photo-area{
+    height:320px;
+  }
+
+  /* CONTACT */
+  .contact-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+  /* REVIEWS */
+  .reviews-summary{
+    grid-template-columns:1fr 1fr;
   }
 
 }
@@ -922,10 +1015,21 @@ footer{
 @media(max-width:600px){
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
   .achieve-strip{justify-content:center;}
-  .trainer-meta-grid{grid-template-columns:1fr;}
+  .trainer-meta-grid{grid-template-columns:1fr 1fr;}
   .media-images-grid,.media-videos-grid{grid-template-columns:1fr 1fr;}
   .media-certs-grid{grid-template-columns:1fr;}
   .media-tab{padding:10px 18px;font-size:0.8rem;letter-spacing:0.1em;}
+  .about-tag{right:0;bottom:-1rem;}
+  .hero-title{font-size:clamp(2.4rem,9vw,3.2rem);}
+  .trainer-grid{margin-top:2rem;}
+  .tc-name{font-size:1.4rem;}
+}
+
+/* Hide custom cursor on touch/mobile devices */
+@media(hover:none),(pointer:coarse){
+  #cur,#cur-r{display:none;}
+  body{cursor:auto;}
+  .btn-primary,.btn-outline,.nav-btn,.pg,.gg,.jf-submit,.wa-float,.mv,.media-tab{cursor:pointer;}
 }
 </style>
 </head>
@@ -1267,37 +1371,37 @@ footer{
       <div class="mi">
         <img src="images/1.jpeg" alt="Gym Image 1"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label"></div>
+        <div class="mi-upload-label">Gym Photo 1</div>
       </div>
       <!-- Slot 2 -->
       <div class="mi">
         <img src="images/2.jpeg" alt="Gym Image 2"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label"></div>
+        <div class="mi-upload-label">Gym Photo 2</div>
       </div>
       <!-- Slot 3 -->
       <div class="mi">
         <img src="images/joseph.jpeg" alt="Gym Image 3"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label"></div>
+        <div class="mi-upload-label">Gym Photo 3</div>
       </div>
       <!-- Slot 4 -->
       <div class="mi">
         <img src="images/5.jpeg" alt="Gym Image 4"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label"></div>
+        <div class="mi-upload-label">Gym Photo 4</div>
       </div>
       <!-- Slot 5 -->
       <div class="mi">
         <img src="images/6.jpeg" alt="Gym Image 5"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label"></div>
+        <div class="mi-upload-label">Gym Photo 5</div>
       </div>
       <!-- Slot 6 -->
       <div class="mi">
         <img src="images/WhatsApp Image 2026-04-22 at 11.03.24 PM.jpeg" alt="Gym Image 6"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label"></div>
+        <div class="mi-upload-label">Gym Photo 6</div>
       </div>
     </div>
     <p style="text-align:center;margin-top:1.5rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);">
@@ -1495,23 +1599,21 @@ footer{
             <div class="ci-val"><a href="tel:09035542067">09035542067</a></div>
           </div>
         </div>
-        <div class="ci">
-        <div class="ci-icon">🕐</div>
-
-        <div>
-        <div class="ci-label">Hours</div>
-
-        <div class="ci-val">
-        Monday: 6 AM – 10 PM<br>
-        Tuesday: 6 AM – 10 PM<br>
-        Wednesday: 6 AM – 10 PM<br>
-        Thursday: 6 AM – 10 PM<br>
-        Friday: 6 AM – 10 PM<br>
-        Saturday: 6 AM – 10 PM<br>
-        Sunday: 7 AM – 10 AM
-        </div>
-        </div>
-        </div>
+         <div class="ci">
+          <div class="ci-icon">🕐</div>
+          <div>
+           <div class="ci-label">Hours</div>
+            <div class="ci-val">
+            Monday:    6 AM – 10 PM<br>
+            Tuesday:   6 AM – 10 PM<br>
+            Wednesday: 6 AM – 10 PM<br>
+            Thursday:  6 AM – 10 PM<br>
+            Friday:    6 AM – 10 PM<br>
+            Saturday:  6 AM – 10 PM<br>
+            Sunday:    7 AM – 10 AM
+           </div>
+         </div>
+         </div>
         <div class="ci">
           <div class="ci-icon">🗺️</div>
           <div>
@@ -1580,7 +1682,7 @@ window.addEventListener('load',()=>{
 // REVEAL
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.1});
+},{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(r=>obs.observe(r));
 
 // MEDIA TABS
