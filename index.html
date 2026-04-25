@@ -310,71 +310,24 @@ nav{
   color:var(--cyan);
 }
 
+/* ===== MOBILE ===== */
+
 @media(max-width:900px){
 
-  /* GENERAL FIX */
-  section{
-    padding:60px 20px;
-  }
-
-  /* NAV */
-  .nav-links{
-    display:none;
-  }
-
-  /* HERO */
-  .hero{
-    height:auto;
-    padding-bottom:40px;
-  }
-
-  .hero-content{
-    padding:0 20px;
-    padding-top:40px;
-    max-width:100%;
-  }
-
-  .hero-title{
-    font-size:clamp(2.2rem,8vw,3rem);
-    line-height:1;
-  }
-
-  .hero-sub{
-    font-size:1rem;
-  }
-
-  .hero-stats{
-    flex-wrap:wrap;
-    gap:1.2rem;
-  }
-
-  .hero-btns{
-    flex-direction:column;
-  }
-
-  .btn-primary,
-  .btn-outline{
-    width:100%;
-    text-align:center;
-  }
-
-  /* LOGO FIX */
   .hero-logo{
     position:relative;
+    right:auto;
+    top:auto;
     transform:none;
     display:flex;
     justify-content:center;
-    margin-top:20px;
+    margin-top:30px;
   }
 
   .hero-logo img{
-    width:220px;
-    max-width:80%;
-    height:auto;
-    animation:none;
+    width:260px;
+    max-width:85%;
   }
-
-  /* TRAINER */
   .trainer-grid{
     grid-template-columns:1fr;
     gap:2rem;
@@ -384,45 +337,8 @@ nav{
     max-width:100%;
   }
 
-  .trainer-meta-grid{
-    grid-template-columns:1fr;
-  }
-
-  /* ABOUT */
-  .about-grid{
-    grid-template-columns:1fr;
-    gap:2rem;
-  }
-
-  /* GALLERY */
-  .gallery-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  /* MEDIA */
-  .media-images-grid,
-  .media-videos-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  /* TEAM */
-  .team-cards{
-    grid-template-columns:1fr;
-  }
-
-  .tc-photo-area{
-    height:320px;
-  }
-
-  /* CONTACT */
-  .contact-grid{
-    grid-template-columns:1fr;
-    gap:2rem;
-  }
-
-  /* REVIEWS */
-  .reviews-summary{
-    grid-template-columns:1fr 1fr;
+  .trainer-photo{
+    aspect-ratio:3/4;
   }
 
 }
