@@ -310,23 +310,119 @@ nav{
   color:var(--cyan);
 }
 
-/* ===== MOBILE ===== */
-
 @media(max-width:900px){
 
+  /* GENERAL FIX */
+  section{
+    padding:60px 20px;
+  }
+
+  /* NAV */
+  .nav-links{
+    display:none;
+  }
+
+  /* HERO */
+  .hero{
+    height:auto;
+    padding-bottom:40px;
+  }
+
+  .hero-content{
+    padding:0 20px;
+    padding-top:40px;
+    max-width:100%;
+  }
+
+  .hero-title{
+    font-size:clamp(2.2rem,8vw,3rem);
+    line-height:1;
+  }
+
+  .hero-sub{
+    font-size:1rem;
+  }
+
+  .hero-stats{
+    flex-wrap:wrap;
+    gap:1.2rem;
+  }
+
+  .hero-btns{
+    flex-direction:column;
+  }
+
+  .btn-primary,
+  .btn-outline{
+    width:100%;
+    text-align:center;
+  }
+
+  /* LOGO FIX */
   .hero-logo{
     position:relative;
-    right:auto;
-    top:auto;
     transform:none;
     display:flex;
     justify-content:center;
-    margin-top:30px;
+    margin-top:20px;
   }
 
   .hero-logo img{
-    width:260px;
-    max-width:85%;
+    width:220px;
+    max-width:80%;
+    height:auto;
+    animation:none;
+  }
+
+  /* TRAINER */
+  .trainer-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+  .trainer-photo-wrap{
+    max-width:100%;
+  }
+
+  .trainer-meta-grid{
+    grid-template-columns:1fr;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+  /* GALLERY */
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  /* MEDIA */
+  .media-images-grid,
+  .media-videos-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  /* TEAM */
+  .team-cards{
+    grid-template-columns:1fr;
+  }
+
+  .tc-photo-area{
+    height:320px;
+  }
+
+  /* CONTACT */
+  .contact-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+
+  /* REVIEWS */
+  .reviews-summary{
+    grid-template-columns:1fr 1fr;
   }
 
 }
@@ -1255,41 +1351,41 @@ footer{
       <div class="mi">
         <img src="images/1.jpeg" alt="Gym Image 1"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label">Gym Photo 1</div>
+        <div class="mi-upload-label"></div>
       </div>
       <!-- Slot 2 -->
       <div class="mi">
         <img src="images/2.jpeg" alt="Gym Image 2"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label">Gym Photo 2</div>
+        <div class="mi-upload-label"></div>
       </div>
       <!-- Slot 3 -->
       <div class="mi">
         <img src="images/joseph.jpeg" alt="Gym Image 3"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label">Gym Photo 3</div>
+        <div class="mi-upload-label"></div>
       </div>
       <!-- Slot 4 -->
       <div class="mi">
         <img src="images/5.jpeg" alt="Gym Image 4"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label">Gym Photo 4</div>
+        <div class="mi-upload-label"></div>
       </div>
       <!-- Slot 5 -->
       <div class="mi">
         <img src="images/6.jpeg" alt="Gym Image 5"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label">Gym Photo 5</div>
+        <div class="mi-upload-label"></div>
       </div>
       <!-- Slot 6 -->
       <div class="mi">
         <img src="images/WhatsApp Image 2026-04-22 at 11.03.24 PM.jpeg" alt="Gym Image 6"/>
         <div class="mi-overlay"><div class="mi-overlay-icon">🔍</div></div>
-        <div class="mi-upload-label">Gym Photo 6</div>
+        <div class="mi-upload-label"></div>
       </div>
     </div>
     <p style="text-align:center;margin-top:1.5rem;font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);">
-      ↑ Replace the image URLs above with your actual gym photos
+     
     </p>
   </div>
 
@@ -1484,11 +1580,21 @@ footer{
           </div>
         </div>
         <div class="ci">
-          <div class="ci-icon">🕐</div>
-          <div>
-            <div class="ci-label">Hours</div>
-            <div class="ci-val">Mon–Sun: Open Daily · Peak: 8 AM onwards</div>
-          </div>
+        <div class="ci-icon">🕐</div>
+
+        <div>
+        <div class="ci-label">Hours</div>
+
+        <div class="ci-val">
+        Monday: 6 AM – 10 PM<br>
+        Tuesday: 6 AM – 10 PM<br>
+        Wednesday: 6 AM – 10 PM<br>
+        Thursday: 6 AM – 10 PM<br>
+        Friday: 6 AM – 10 PM<br>
+        Saturday: 6 AM – 10 PM<br>
+        Sunday: 7 AM – 10 AM
+        </div>
+        </div>
         </div>
         <div class="ci">
           <div class="ci-icon">🗺️</div>
