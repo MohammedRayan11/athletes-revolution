@@ -120,11 +120,13 @@ nav{
 .hero-logo{
   position:absolute;
   top:50%;
-  right:-11%;
+  right:2%;                 /* bring fully inside */
   transform:translateY(-50%);
   z-index:2;
 
-  width:38%;
+  width:30%;                /* slightly smaller for balance */
+  max-width:380px;
+
   display:flex;
   justify-content:center;
   align-items:center;
@@ -350,7 +352,7 @@ nav{
   }
 
   .hero-content{
-    padding:100px 20px 30px;
+    padding:70px 20px 10px;  /* pulls content UP */
     max-width:100%;
     width:100%;
     position:relative;
@@ -1786,6 +1788,5 @@ function joinNow(){
 </script>
 </body>
 </html>
-
 
 
